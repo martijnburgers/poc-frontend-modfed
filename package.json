@@ -1,0 +1,35 @@
+{
+  "name": "poc-frontend-modfed",
+  "version": "0.1.0",
+  "private": true,
+  "description": "React + Rspack Module Federation POC (one app shell, two remote modules)",
+  "workspaces": [
+    "apps/*",
+    "modules/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently -k -n shell,products,cart -c cyan,magenta,yellow \"npm:dev:products\" \"npm:dev:cart\" \"npm:dev:shell\"",
+    "dev:shell": "npm run dev --workspace @poc-mf/shell",
+    "dev:products": "npm run dev --workspace @poc-mf/remote-products",
+    "dev:cart": "npm run dev --workspace @poc-mf/remote-cart",
+    "build": "npm run build --workspaces --if-present",
+    "build:shell": "npm run build --workspace @poc-mf/shell",
+    "build:products": "npm run build --workspace @poc-mf/remote-products",
+    "build:cart": "npm run build --workspace @poc-mf/remote-cart",
+    "serve": "concurrently -k -n shell,products,cart -c cyan,magenta,yellow \"npm:serve:products\" \"npm:serve:cart\" \"npm:serve:shell\"",
+    "serve:shell": "npm run serve --workspace @poc-mf/shell",
+    "serve:products": "npm run serve --workspace @poc-mf/remote-products",
+    "serve:cart": "npm run serve --workspace @poc-mf/remote-cart",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "clean": "rm -rf apps/*/dist modules/*/dist"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "serve": "^14.2.4",
+    "typescript": "^5.5.4"
+  },
+  "engines": {
+    "node": ">=18.17"
+  }
+}

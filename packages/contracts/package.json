@@ -1,0 +1,17 @@
+{
+  "name": "@poc-mf/contracts",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Cross-bundle singletons (React contexts, shared types) consumed by the shell and every remote",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "react": "^19.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.0"
+  }
+}
